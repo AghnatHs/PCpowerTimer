@@ -1,0 +1,75 @@
+<TimeLabel@Label>:
+    font_size : "100dp"
+    bg : 1, 1, 1, 0.2
+    canvas.before:
+        Color:
+            rgba: self.bg
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<InDeButton@Button>:
+    font_size : "50dp"
+    size_hint : (1,.65)
+
+<MainButton@Button>:
+    font_size : "45dp"
+    size_hint : (.33,.75)
+
+<MainScreen>:
+    id : Main
+    BoxLayout:
+        orientation : "vertical"
+        GridLayout:
+            cols : 3
+            InDeButton:
+                text : "^"
+                on_press : Main.increaseTime(root.ID_HOUR)
+            InDeButton:
+                text : "^"
+                on_press : Main.increaseTime(root.ID_MINUTE)
+            InDeButton:
+                text : "^"
+                on_press : Main.increaseTime(root.ID_SECOND)
+            TimeLabel:
+                id : hourLabel
+                text : ""
+            TimeLabel:
+                id : minuteLabel
+                text : ""
+            TimeLabel:
+                id : secondLabel
+                text : ""
+            InDeButton:
+                text : "v"
+                on_press : Main.decreaseTime(root.ID_HOUR)
+            InDeButton:
+                text : "v"
+                on_press : Main.decreaseTime(root.ID_MINUTE)
+            InDeButton:
+                text : "v"
+                on_press : Main.decreaseTime(root.ID_SECOND)
+        
+        FloatLayout:
+            size_hint : 1,.3
+            Label:
+                id : hourEstimatedLabel
+                font_size : "20dp"
+                text : ""
+                pos_hint : {"x":0,"y":.3}
+        FloatLayout:
+            MainButton:
+                background_color : 0,0,1,1
+                text : "Cancel"
+                pos_hint : {"x":.005,"y":.35}
+                on_press : Main.exec()
+            MainButton:
+                text : "Shut Down"
+                pos_hint : {"x":.335,"y":.35}
+                on_press : Main.exec("shutdown /s /t ")
+            MainButton:
+                text : "Restart"
+                pos_hint : {"x":.666,"y":.35}
+                on_press : Main.exec("shutdown /r /t ")
+            
+        
