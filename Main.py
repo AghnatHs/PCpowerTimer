@@ -1,7 +1,6 @@
 import os
 
 import kivy
-import math
 
 from datetime import datetime,timedelta
 from pathlib import Path
@@ -78,7 +77,7 @@ class MainScreen(FloatLayout):
         self.minuteLabel.text = self.getStringedTime(_minute)
         self.secondLabel.text = self.getStringedTime(_second)
 
-        _hourEstimated = datetime.datetime.combine(datetime.datetime.today(), _hourNow) + timedelta(seconds=Timer(self.hour,self.minute,self.second).totalTime())
+        _hourEstimated = datetime.datetime.combine(datetime.datetime.today(), _hourNow) + timedelta(seconds=Timer(_hour,_minute,_second).totalTime())
         
         self.hourEstimatedLabel.text = "Executed in : "+str(_hourEstimated.strftime(r"%d/%m/%y %H:%M:%S"))
     def getStringedTime(self,value):
